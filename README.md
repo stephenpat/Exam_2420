@@ -33,6 +33,64 @@ Priority warning for logs: journalctl -b -p warning
 Output in a nice pretty JSON: journalctl -b -p warning --output json-pretty
 
 
+/* Part 4 */
+
+
+code {
+
+#!/bin/bash
+
+# Search the /etc/passwd file for all users with UID between 1000 and 5000
+users=$(grep -E ":([1-4][0-9]{3}):" /etc/passwd)
+
+# Cycle through users
+for user in $users; do
+  # Extract the user name, UID and login shell
+  name=$(echo $user | cut -d: -f1)
+  uid=$(echo $user | cut -d: -f3)
+  shell=$(echo $user | cut -d: -f7)
+
+  # Print the user name, UID and login shell
+  printf "Username: %s\nUID: %s\nLogin Shell: %s\n\n" "$name" "$uid" "$shell"
+# Print all currently logged in users
+loggedin=$(w | tail -n +3 | awk '{print $1}')
+
+# Cycle through logged in users
+for user in $loggedin; do
+  # Print the user name# Print all currently logged in users
+loggedin=$(w | tail -n +3 | awk '{print $1}')
+
+# Cycle through logged in users
+for user in $loggedin; do
+  # Print the user name
+  printf "Logged in user: %s\n
+  printf "Logged in user: %s\n
+done
+
+}
+
+
+
+/* Part 5 */
+
+code {
+Write a service file that runs script from part 4
+
+[Unit]
+Description=Part 4 Script
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env \\wsl.localhost\Ubuntu\home\stephen\Exam_2420\part4script
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+~                                                                           ~                                                                           ~                                                                           ~
+}
+
+/* Part 6 */
+
 
 
 

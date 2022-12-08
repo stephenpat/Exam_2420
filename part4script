@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Search the /etc/passwd file for all users with UID between 1000 and 5000
+users=$(grep -E ":([1-4][0-9]{3}):" /etc/passwd)
+
+# Cycle through users
+for user in $users; do
+  # Extract the user name, UID and login shell
+  name=$(echo $user | cut -d: -f1)
+  uid=$(echo $user | cut -d: -f3)
+  shell=$(echo $user | cut -d: -f7)
+  
+  # Print the user name, UID and login shell
+  printf "Username: %s\nUID: %s\nLogin Shell: %s\n\n" "$name" "$uid" "$shell"
+# Print all currently logged in users
+loggedin=$(w | tail -n +3 | awk '{print $1}')
+
+# Cycle through logged in users
+for user in $loggedin; do
+  # Print the user name# Print all currently logged in users
+loggedin=$(w | tail -n +3 | awk '{print $1}')
+
+# Cycle through logged in users
+for user in $loggedin; do
+  # Print the user name
+  printf "Logged in user: %s\n
+  printf "Logged in user: %s\n
+done
